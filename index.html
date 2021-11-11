@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biểu mẫu điền thông tin</title>
+</head>
+<style>
+  :root {
+    --pink: rgb(25, 105, 180);
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+button{
+  border: 0;
+  margin-top: 15px;
+  font-size: 25px;
+  padding: 5px;
+  color: rgb(25, 105, 180);
+}
+
+button:hover{
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+body{
+  background: white;
+}
+
+h3{
+  margin-bottom: 20px;
+}
+
+form{
+  margin: 0 auto;
+  padding: 60px;
+  padding-top: 10px;
+  font-size: 16px;
+  line-height: 20px;
+  /* box-shadow: 0 0 0 0px rgb(0 0 0 / 10%), 0 2px 16px rgb(0 0 0 / 15%);
+  border: 1px solid #CBCBCB; */
+}
+
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label
+{
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #666;
+}
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    background: #fff;
+}
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: var(--pink);
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+[type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+[type="radio"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+</style>
+<body>
+    <!-- <form id="formm">
+
+      <h3>Biểu mẫu điền thông tin liên quan đến COVID-19</h3>
+        <h4>1. Bạn có bị ho không?</h4>
+
+          <p>
+            <input type="radio" id="test1" name="radio-group" onclick="check()" required>
+            <label for="test1">Rát họng</label>
+          </p>
+          <p>
+            <input type="radio" id="test2" name="radio-group" onclick="check()">
+            <label for="test2">ho khan</label>
+          </p>
+
+        <p>
+          <input type="radio" id="test3" onclick="kocheck()" name="radio-group">
+          <label for="test3">Không</label>
+        </p>
+        
+      
+      
+        <h4>2. Bạn có bị khó thở?</h4>
+        <p>
+          <input type="radio" id="test12" onclick="check2()" name="radio-group2" required>
+          <label for="test12">Thở yếu</label>
+        </p>
+        <p>
+          <input type="radio" id="test22" onclick="check2()" name="radio-group2">
+          <label for="test22">Ngạt mũi</label>
+        </p>
+        <p>
+          <input type="radio" id="test33" onclick="kocheck2()" name="radio-group2">
+          <label for="test33">Không</label>
+        </p>
+
+
+        <h4>3. Bạn có bị tiêu chảy không?</h4>
+        <p>
+          <input type="radio" id="pro" onclick="check3()" name="radio-group3" required>
+          <label for="pro">Có</label>
+        </p>
+        <p>
+          <input type="radio" id="pro2" onclick="check3()" name="radio-group3">
+          <label for="pro2">Từng lúc một</label>
+        </p>
+        <p>
+          <input type="radio" id="pro3" onclick="kocheck3()" name="radio-group3">
+          <label for="pro3">Không</label>
+        </p>
+
+        <h4>4. Bạn có bị sốt không?</h4>
+        <p>
+          <input type="radio" id="proz" onclick="check4()" name="radio-group32" required>
+          <label for="proz">Có</label>
+        </p>
+        <p>
+          <input type="radio" id="pro2z" onclick="kocheck4()" name="radio-group32">
+          <label for="pro2z">Không</label>
+        </p>
+
+
+        <h4>5. Nhiệt độ nhiệt tại của bạn là?</h4>
+        <p>
+          <input type="radio" id="prox" onclick="check5()" name="radio-group33" required>
+          <label for="prox">Trên 38 độ</label>
+        </p>
+        <p>
+          <input type="radio" id="pro2x" onclick="kocheck5()" name="radio-group33">
+          <label for="pro2x">Dưới 38 độ</label>
+        </p>
+
+        <h4>6. Bạn có bị đau đầu</h4>
+        <p>
+          <input type="radio" id="prox4" onclick="check6()" name="radio-group44" required>
+          <label for="prox4">Có</label>
+        </p>
+        <p>
+          <input type="radio" id="pro2x5" onclick="kocheck6()" name="radio-group44">
+          <label for="pro2x5">Không</label>
+        </p>
+
+        <h4>7. Bạn có bị đau họng</h4>
+        <p>
+          <input type="radio" id="prox44" onclick="check7()" name="radio-group444" required>
+          <label for="prox44">Có</label>
+        </p>
+        <p>
+          <input type="radio" id="pro2x54" onclick="kocheck7()" name="radio-group444">
+          <label for="pro2x54">Không</label>
+        </p>
+
+
+        
+        <input id="btn-form" type="submit">
+        <div id="formchild"></div>
+    </form> -->
+    <form id="formm">
+      <h4>1. Bạn có bị ho không?</h4>
+
+        <p>
+          <input type="radio" id="test1" name="radio-group" onclick="check()" required>
+          <label for="test1">Rát họng</label>
+        </p>
+        <p>
+          <input type="radio" id="test2" name="radio-group" onclick="check()">
+          <label for="test2">ho khan</label>
+        </p>
+
+      <p>
+        <input type="radio" id="test3" onclick="kocheck()" name="radio-group">
+        <label for="test3">Không</label>
+      </p>
+      
+    
+    
+      <h4>2. Bạn có bị khó thở?</h4>
+      <p>
+        <input type="radio" id="test12" onclick="check2()" name="radio-group2" required>
+        <label for="test12">Thở yếu</label>
+      </p>
+      <p>
+        <input type="radio" id="test22" onclick="check2()" name="radio-group2">
+        <label for="test22">Ngạt mũi</label>
+      </p>
+      <p>
+        <input type="radio" id="test33" onclick="kocheck2()" name="radio-group2">
+        <label for="test33">Không</label>
+      </p>
+
+
+      <h4>3. Bạn có bị tiêu chảy không?</h4>
+      <p>
+        <input type="radio" id="pro" onclick="check3()" name="radio-group3" required>
+        <label for="pro">Có</label>
+      </p>
+      <p>
+        <input type="radio" id="pro2" onclick="check3()" name="radio-group3">
+        <label for="pro2">Từng lúc một</label>
+      </p>
+      <p>
+        <input type="radio" id="pro3" onclick="kocheck3()" name="radio-group3">
+        <label for="pro3">Không</label>
+      </p>
+
+      <h4>4. Bạn có bị sốt không?</h4>
+      <p>
+        <input type="radio" id="proz" onclick="check4()" name="radio-group32" required>
+        <label for="proz">Có</label>
+      </p>
+      <p>
+        <input type="radio" id="pro2z" onclick="kocheck4()" name="radio-group32">
+        <label for="pro2z">Không</label>
+      </p>
+
+
+      <h4>5. Nhiệt độ nhiệt tại của bạn là?</h4>
+      <p>
+        <input type="radio" id="prox" onclick="check5()" name="radio-group33" required>
+        <label for="prox">Trên 38 độ</label>
+      </p>
+      <p>
+        <input type="radio" id="pro2x" onclick="kocheck5()" name="radio-group33">
+        <label for="pro2x">Dưới 38 độ</label>
+      </p>
+
+      <h4>6. Bạn có bị đau đầu</h4>
+      <p>
+        <input type="radio" id="prox4" onclick="check6()" name="radio-group44" required>
+        <label for="prox4">Có</label>
+      </p>
+      <p>
+        <input type="radio" id="pro2x5" onclick="kocheck6()" name="radio-group44">
+        <label for="pro2x5">Không</label>
+      </p>
+
+      <h4>7. Bạn có bị đau họng</h4>
+      <p>
+        <input type="radio" id="prox44" onclick="check7()" name="radio-group444" required>
+        <label for="prox44">Có</label>
+      </p>
+      <p>
+        <input type="radio" id="pro2x54" onclick="kocheck7()" name="radio-group444">
+        <label for="pro2x54">Không</label>
+      </p>
+
+        <input id="btn-form" type="submit">
+        <div id="formchild"></div>
+</form>     
+
+    <!-- <script src="./assets/js/form.js"></script> -->
+    <script>
+         //savedata(save)
+ 
+// function save_data2()
+// {
+// 	var form_element = document.getElementsByClassName('btn-form');
+
+// 	var form_data = new FormData();
+
+// 	for(var count = 0; count < form_element.length; count++)
+// 	{
+// 		form_data.append(form_element[count].name, form_element[count].value);
+// 	}
+
+// 	var ajax_request = new XMLHttpRequest();
+
+// 	ajax_request.open('POST', 'process_data2.php');
+
+// 	ajax_request.send(form_data);
+
+// 	ajax_request.onreadystatechange = function()
+// 	{
+// 		if(ajax_request.readyState == 4 && ajax_request.status == 200)
+// 		{
+// 			var response = JSON.parse(ajax_request.responseText);
+//         }
+// 	}
+// }
+  
+  //bi benh
+  var dem = 0
+  var cau1 =0
+  var cau2 =0
+  var cau3 =0
+  var cau4 =0
+  var cau5 =0
+  var cau6 =0
+  var cau7 =0
+  
+  //ko bi benh
+  var dem2 = 0
+  var kcau1 =0
+  var kcau2 =0
+  var kcau3 =0
+  var kcau4 =0
+  var kcau5 =0
+  var kcau6 =0
+  var kcau7 =0
+  
+  
+  function check(){
+    cau1 = 1
+    kcau1 = null
+  }
+  
+  function check2(){
+    cau2 = 1
+    kcau2 = null
+  }
+  
+  function check3(){
+    cau3 = 1
+    kcau3 = null
+  }
+  
+  function check4(){
+    cau4 = 1
+    kcau4 = null
+  }
+  
+  function check5(){
+    cau5 = 1
+    kcau5 = null
+  }
+  
+  function check6(){
+    cau6 = 1
+    kcau6 = null
+  }
+  
+  function check7(){
+    cau7 = 1
+    kcau7 = null
+  }
+  
+  //ko
+  function kocheck(){
+    kcau1 = 1
+    cau1 = null
+  }
+  
+  function kocheck2(){
+    kcau2 = 1
+    cau2 = null
+  }
+  
+  function kocheck3(){
+    kcau3 = 1
+    cau3 = null
+  }
+  
+  function kocheck4(){
+    kcau4 = 1
+    cau4 = null
+  }
+  
+  function kocheck5(){
+    kcau5 = 1
+    cau5 = null
+  }
+  
+  function kocheck6(){
+    kcau6 = 1
+    cau6 = null
+  }
+  
+  function kocheck7(){
+    kcau7 = 1
+    cau7 = null
+  }
+
+  var save = null
+
+    document.getElementById('btn-form').addEventListener("click", function(){
+      dem = cau1 + cau2 + cau3 + cau4 + cau5 + cau6 + cau7
+      dem2 = kcau1 + kcau2 + kcau3 + kcau4 + kcau5 + kcau6 + cau7
+      // alert(dem)
+      // alert(dem2)
+
+      // //co trieu chung > 2
+      // if(dem>=3 && dem2 < 3){
+      //     // alert('Bạn có nguy cơ cao bị nhiễm COVID-19, hãy đến cơ quan y tế gần nhất để khai báo')
+
+      //     save = 'Bạn có nguy cơ cao bị nhiễm COVID-19, hãy đến cơ quan y tế gần nhất để khai báo'
+      //     alert('co benh')
+      // }
+      // //trieu chung chi dung lai = 2
+      // if(dem==2){
+      //     // alert('Các triệu chứng của bạn chưa đủ dấu hiệu để gây bệnh')
+          
+      //     save = 'Các triệu chứng của bạn chưa đủ dấu hiệu để gây bệnh'
+      // }
+
+      // //ko > 2
+      // if(dem2>3){
+      //     // alert('Bạn không bị bệnh, đây là các dấu hiệu thông thường')
+          
+      //     save = 'Bạn không bị bệnh, đây là các dấu hiệu thông thường'
+      // }
+
+      // //ko trieu chung chi dung lai = 2
+      // if(dem<3 && dem2 > 3){
+      //     // alert('Các triệu chứng của bạn chưa đủ dấu hiệu để gây bệnh')
+          
+      //     save = 'Các triệu chứng của bạn chưa đủ dấu hiệu để gây bệnh'
+      //     alert('ko benh')
+      // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // co 4 truong hop
+      if(dem > 3 && dem2 < 4){
+        save = 'Bạn có nguy cơ cao bị nhiễm COVID-19, hãy đến cơ quan y tế gần nhất để khai báo'
+      }
+
+      //3 co , 4 ko
+      if(!(dem > 3 && dem2 < 4)){
+        save = 'Bạn không bị bệnh, đây là các dấu hiệu thông thường'
+      }
+
+      if(dem==2){
+        save = 'Các triệu chứng của bạn chưa đủ dấu hiệu để gây bệnh'
+      }
+
+
+      formm = document.getElementById('formchild')
+      formm.innerHTML = save
+
+    })
+
+
+    </script>
+</body>
+</html>
